@@ -7,6 +7,7 @@ import Header from "./components/Header/Header";
 import BookAdd from "./components/Books/BookAdd";
 import BookEdit from "./components/Books/BookEdit";
 import BookRepository from "./repository/BookRepository";
+import Categories from "./components/Books/Categories";
 
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
         this.state = {
             books: [],
             authors: [],
+            categories: [],
             selectedBook: {}
         }
     }
@@ -26,23 +28,26 @@ class App extends Component {
                 <main>
                     <div className="container">
                         <Routes>
-                            <Route path={"/book/add"} exact render={() =>
+                            <Route path={"/book/add"} exact element={
                                 <BookAdd authors={this.state.authors}
                                          onAddBook={this.addBook}/>}
                             />
-                            <Route path={"/book/edit/:id"} exact render={() =>
+                            <Route path={"/book/edit/:id"} exact element={
                                 <BookEdit authors={this.state.authors}
                                           onEditBook={this.editBook}
                                           book={this.state.selectedBook}/>}/>
 
 
-                            <Route path={"/book"} exact render={() =>
+                            <Route path={"/book"} exact element={
                                 <BooksList books={this.state.books}
                                            onDelete={this.deleteBook}
                                            onEdit={this.getBook}
                                            onMarkAsTaken={this.markAsTaken}/>}/>
 
-                            <Route render={() => <Navigate to="/books"/>}/>
+                            <Route path={"/categories"} exact element={
+                                <Categories categories={this.state.categories}/>}/>
+
+                            <Route path="*" element={ <Navigate to="/book"/>}/>
                         </Routes>
                     </div>
                 </main>
@@ -53,6 +58,7 @@ class App extends Component {
     componentDidMount() {
         this.loadBooks();
         this.loadAuthors();
+        this.loadCategories();
     }
 
     loadBooks = () => {
@@ -69,6 +75,15 @@ class App extends Component {
             .then((data) => {
                 this.setState({
                     authors: data.data
+                })
+            });
+    }
+
+    loadCategories = () => {
+        BookRepository.fetchCategories()
+            .then((data) => {
+                this.setState({
+                    categories: data.data
                 })
             });
     }

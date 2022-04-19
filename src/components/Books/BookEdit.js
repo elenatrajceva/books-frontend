@@ -26,7 +26,7 @@ const BookEdit = (props) => {
         const availableCopies = parseInt(formData.availableCopies) !== 0 ? parseInt(formData.availableCopies) : parseInt(props.product.availableCopies);
 
         props.onEditBook(props.book.id, name, category, authorId, availableCopies);
-        navigate.push("/books");
+        navigate("/books");
     }
 
     return(
@@ -75,7 +75,6 @@ const BookEdit = (props) => {
                                     return <option selected={props.book.author.id} value={term.id}>{term.name}</option>
                                 else return <option value={term.id}>{term.name}</option>
                             })}
-
                         </select>
                     </div>
                     <button id="submit" type="submit" className="btn btn-primary">Submit</button>

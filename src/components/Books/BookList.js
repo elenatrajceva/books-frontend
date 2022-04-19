@@ -71,7 +71,7 @@ class BooksList extends React.Component {
     getBooksPage = (offset, nextPageOffset) => {
         return this.props.books.map((term, index) => {
             return (
-                <BookTerm term={term} onDelete={this.props.onDelete} onMarkAsTaken={this.props.onMarkAsTaken} onEdit={this.props.onEdit}/>
+                <BookTerm term={term} key={index} onDelete={this.props.onDelete} onMarkAsTaken={this.props.onMarkAsTaken} onEdit={this.props.onEdit}/>
             );
         }).filter((product, index) => {
             return index >= offset && index < nextPageOffset;

@@ -5,7 +5,7 @@ const Header = (props) => {
     return (
         <header>
             <nav className="navbar navbar-expand-md navbar-dark navbar-fixed bg-dark">
-                <a className="navbar-brand" href="/books">Books</a>
+                <Link className="navbar-brand" to={"/book"}>Books Application</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -13,7 +13,10 @@ const Header = (props) => {
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
-                            <Link className="nav-link" to={"/books"}>Books</Link>
+                            <Link className="nav-link" to={"/book"}>Books List</Link>
+                        </li>
+                        <li className="nav-item active">
+                            <Link className="nav-link" to={"/categories"}>Category</Link>
                         </li>
                     </ul>
                 </div>

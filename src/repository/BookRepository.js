@@ -7,6 +7,9 @@ const BookRepository = {
     fetchAuthors: () => {
         return axios.get("/author");
     },
+    fetchCategories: () => {
+        return axios.get("/categories");
+    },
     addBook: (name, category, author, availableCopies) => {
         return axios.post("/book", {
             "name" : name,
